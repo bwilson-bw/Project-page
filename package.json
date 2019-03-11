@@ -1,0 +1,24 @@
+{
+  "name": "project-page",
+  "version": "1.0.0",
+  "description": "Contains multiple side projects written in Javascript",
+  "scripts": {
+    "start": "node site/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bwilson-bw/Project-page.git"
+  },
+  "author": "bwilson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bwilson-bw/Project-page/issues"
+  },
+  "homepage": "https://github.com/bwilson-bw/Project-page#readme",
+  "devDependencies": {
+    "prettier": "1.16.4"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
