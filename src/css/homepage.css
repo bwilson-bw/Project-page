@@ -1,0 +1,14 @@
+.home-card-body {
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-card {
+    margin: 15px;
+}

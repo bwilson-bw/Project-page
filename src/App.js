@@ -1,21 +1,35 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AppHeader from "./components/AppHeader";
 import AppSidebar from "./components/AppSidebar";
+import Home from "./Home";
 
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <AppHeader />
-        <AppSidebar />
-        <div className="AppContentWrapper">
-          <div className="AppContentInnerWrapper" />
+      <BrowserRouter>
+        <div className="App">
+          <AppHeader />
+          <AppSidebar />
+
+          <div className="AppContentWrapper">
+            <div className="AppContentInnerWrapper">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/projects" component={Address} />
+                <Route path="*" component={NotFound} />
+              </Switch>
+            </div>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
+
+const Address = () => <div>We are located at 555 Jackson St.</div>;
+const NotFound = () => <div>Page not FOUND 404..........</div>;
 
 export default App;
