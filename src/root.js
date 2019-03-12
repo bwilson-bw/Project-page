@@ -4,7 +4,13 @@ import App from "./App";
 
 const theme = createMuiTheme({
   palette: {
+    primary: {
+      main: "#0097a7"
+    },
     type: "dark"
+  },
+  action: {
+    hoverOpacity: 1
   }
 });
 

@@ -16,7 +16,8 @@ const styles = theme => ({
     height: "100vh"
   },
   linkStyle: {
-    textDecoration: "none"
+    textDecoration: "none",
+    color: "#0097a7"
   }
 });
 

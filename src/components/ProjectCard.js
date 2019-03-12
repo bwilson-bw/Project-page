@@ -18,7 +18,8 @@ const styles = {
     height: 140
   },
   linkStyle: {
-    textDecoration: "none"
+    textDecoration: "none",
+    color: "#0097a7"
   }
 };
 
