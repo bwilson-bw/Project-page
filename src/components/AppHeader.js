@@ -6,27 +6,27 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
+    root: {
+        flexGrow: 1,
+    },
 };
 
 function AppHeader(props) {
-  const { classes } = props;
+    const { classes } = props;
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="deafult">
-        <Toolbar>
-          <Typography variant="h6">Project Page</Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+    return (
+        <div className={classes.root}>
+            <AppBar position="static" color="deafult">
+                <Toolbar>
+                    <Typography variant="h6">Project Page</Typography>
+                </Toolbar>
+            </AppBar>
+        </div>
+    );
 }
 
 AppHeader.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(AppHeader);

@@ -3,23 +3,23 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import App from './App';
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#0097a7',
+    palette: {
+        primary: {
+            main: '#0097a7',
+        },
+        type: 'dark',
     },
-    type: 'dark',
-  },
-  action: {
-    hoverOpacity: 1,
-  },
+    action: {
+        hoverOpacity: 1,
+    },
 });
 
 export default class AppProvider extends Component {
-  render() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <App />
-      </MuiThemeProvider>
-    );
-  }
+    render() {
+        return (
+            <MuiThemeProvider theme={theme}>
+                <App />
+            </MuiThemeProvider>
+        );
+    }
 }
