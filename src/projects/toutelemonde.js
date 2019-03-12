@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 
 const Rxjs = () => (
   <div className="home-body">
-    <Typography variant="h1">RxJs</Typography>
+    <Typography variant="h1">Toute Le Monde</Typography>
   </div>
 );
 

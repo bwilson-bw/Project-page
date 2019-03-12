@@ -30,6 +30,8 @@ class App extends Component {
   }
 }
 
-const NotFound = () => <div>Page not FOUND 404..........</div>;
+const NotFound = () => (
+  <div className="home-body">Page not FOUND 404..........</div>
+);
 
 export default withStyles({ withTheme: true })(App);

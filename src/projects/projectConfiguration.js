@@ -1,4 +1,6 @@
 import Rxjs from "./rxjs";
+import Pixijs from "./pixijs";
+import TouteLeMonde from "./toutelemonde";
 
 const projectConfiguration = [
   {
@@ -12,13 +14,15 @@ const projectConfiguration = [
     id: "PixiJs",
     title: "PixiJs tutorial",
     description: "this is a basic tutorial on PixiJs",
-    routeId: "/pixijs"
+    routeId: "/pixijs",
+    component: Pixijs
   },
   {
     id: "TouteLeMonde",
     title: "Toute Le Monde",
     description: "this is a basic tutorial on France",
-    routeId: "/toutelemonde"
+    routeId: "/toutelemonde",
+    component: TouteLeMonde
   }
 ];
 
