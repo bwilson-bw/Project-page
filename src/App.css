@@ -21,3 +21,8 @@
   background-color: #48464d;
   min-height: calc(100% - 64px);
 }
+
+.currently-selected-link {
+   display: block;
+   background-color: #757575;
+}

@@ -16,7 +16,7 @@ function AppHeader(props) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" color="deafult">
+            <AppBar position="static" color="primary">
                 <Toolbar>
                     <Typography variant="h6">Project Page</Typography>
                 </Toolbar>

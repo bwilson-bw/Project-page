@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import projectConfiguration from '../projects/projectConfiguration';
 
 const styles = theme => ({
@@ -22,43 +22,34 @@ const styles = theme => ({
 });
 
 class AppSidebar extends React.Component {
-    state = {
-        selectedIndex: 0,
-    };
-
-    handleListItemClick = (event, index) => {
-        this.setState({ selectedIndex: index });
-    };
-
     render() {
         const { classes } = this.props;
 
         return (
             <div className={classes.root}>
                 <List component="nav">
-                    <Link to="/" className={classes.linkStyle}>
-                        <ListItem
-                            button
-                            selected={this.state.selectedIndex === 0}
-                            onClick={event => this.handleListItemClick(event, 0)}
-                        >
+                    <NavLink
+                        exact
+                        to="/"
+                        className={classes.linkStyle}
+                        activeClassName="currently-selected-link"
+                    >
+                        <ListItem button>
                             <ListItemText primary="Home" />
                         </ListItem>
-                    </Link>
+                    </NavLink>
                     {projectConfiguration.map((project, key) => (
-                        <Link
+                        <NavLink
+                            exact
                             to={`/projects${project.routeId}`}
                             className={classes.linkStyle}
                             key={key}
+                            activeClassName="currently-selected-link"
                         >
-                            <ListItem
-                                button
-                                selected={this.state.selectedIndex === key + 1}
-                                onClick={event => this.handleListItemClick(event, key + 1)}
-                            >
+                            <ListItem button>
                                 <ListItemText primary={project.title} />
                             </ListItem>
-                        </Link>
+                        </NavLink>
                     ))}
                 </List>
             </div>
