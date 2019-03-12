@@ -1,6 +1,6 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import projectConfiguration from "./projectConfiguration";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import projectConfiguration from './projectConfiguration';
 
 function Projects({ match }) {
   return projectConfiguration.map((project, key) => (

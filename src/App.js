@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import AppHeader from "./components/AppHeader";
-import AppSidebar from "./components/AppSidebar";
-import Home from "./Home";
-import Projects from "./projects";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import AppHeader from './components/AppHeader';
+import AppSidebar from './components/AppSidebar';
+import Home from './Home';
+import Projects from './projects';
+import { withStyles } from '@material-ui/core/styles';
 
-import "./App.css";
+import './App.css';
 
 class App extends Component {
   render() {

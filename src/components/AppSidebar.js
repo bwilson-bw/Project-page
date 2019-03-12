@@ -1,29 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { Link } from "react-router-dom";
-import projectConfiguration from "../projects/projectConfiguration";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { Link } from 'react-router-dom';
+import projectConfiguration from '../projects/projectConfiguration';
 
 const styles = theme => ({
   root: {
-    width: "280px",
+    width: '280px',
     backgroundColor: theme.palette.background.paper,
-    position: "relative",
-    overflow: "scroll",
-    height: "100vh"
+    position: 'relative',
+    overflow: 'scroll',
+    height: '100vh',
   },
   linkStyle: {
-    textDecoration: "none",
-    color: "#0097a7"
-  }
+    textDecoration: 'none',
+    color: '#0097a7',
+  },
 });
 
 class AppSidebar extends React.Component {
   state = {
-    selectedIndex: 0
+    selectedIndex: 0,
   };
 
   handleListItemClick = (event, index) => {
@@ -67,7 +67,7 @@ class AppSidebar extends React.Component {
 }
 
 AppSidebar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(AppSidebar);

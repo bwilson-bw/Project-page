@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import App from "./App";
+import React, { Component } from 'react';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import App from './App';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#0097a7"
+      main: '#0097a7',
     },
-    type: "dark"
+    type: 'dark',
   },
   action: {
-    hoverOpacity: 1
-  }
+    hoverOpacity: 1,
+  },
 });
 
 export default class AppProvider extends Component {
