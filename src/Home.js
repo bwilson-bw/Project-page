@@ -6,8 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import './css/homepage.css';
 
-const styles = theme => ({});
-
 class Home extends React.Component {
     render() {
         return (
@@ -25,4 +23,4 @@ class Home extends React.Component {
     }
 }
 
-export default withStyles(styles)(Home);
+export default Home;

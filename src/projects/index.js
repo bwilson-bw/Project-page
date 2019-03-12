@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import projectConfiguration from './projectConfiguration';
-
-const NotFound = () => <div className="home-body">Page not FOUND 404..........</div>;
+import PageNotFound from '../PageNotFound';
 
 function Projects({ match }) {
     const routes = projectConfiguration.map((project, key) => (
@@ -16,7 +15,7 @@ function Projects({ match }) {
     return (
         <Switch>
             {routes}
-            <Route path={`${match.url}*`} component={NotFound} />
+            <Route path={`${match.url}*`} component={PageNotFound} />
         </Switch>
     );
 }

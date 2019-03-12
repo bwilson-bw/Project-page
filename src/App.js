@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AppHeader from './components/AppHeader';
 import AppSidebar from './components/AppSidebar';
 import Home from './Home';
+import PageNotFound from './PageNotFound';
 import Projects from './projects';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -20,7 +21,7 @@ class App extends Component {
                             <Switch>
                                 <Route exact path="/" component={Home} />
                                 <Route path="/projects" component={Projects} />
-                                <Route path="*" component={NotFound} />
+                                <Route path="*" component={PageNotFound} />
                             </Switch>
                         </div>
                     </div>
@@ -29,7 +30,5 @@ class App extends Component {
         );
     }
 }
-
-const NotFound = () => <div className="home-body">Page not FOUND 404..........</div>;
 
 export default withStyles({ withTheme: true })(App);
