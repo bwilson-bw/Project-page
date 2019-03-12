@@ -4,6 +4,7 @@ import AppHeader from "./components/AppHeader";
 import AppSidebar from "./components/AppSidebar";
 import Home from "./Home";
 import Projects from "./projects";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./App.css";
 
@@ -14,7 +15,6 @@ class App extends Component {
         <div className="App">
           <AppHeader />
           <AppSidebar />
-
           <div className="AppContentWrapper">
             <div className="AppContentInnerWrapper">
               <Switch>
@@ -32,4 +32,4 @@ class App extends Component {
 
 const NotFound = () => <div>Page not FOUND 404..........</div>;
 
-export default App;
+export default withStyles({ withTheme: true })(App);
