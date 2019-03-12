@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AppHeader from "./components/AppHeader";
 import AppSidebar from "./components/AppSidebar";
 import Home from "./Home";
+import Projects from "./projects";
 
 import "./App.css";
 
@@ -18,7 +19,7 @@ class App extends Component {
             <div className="AppContentInnerWrapper">
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/projects" component={Address} />
+                <Route path="/projects" component={Projects} />
                 <Route path="*" component={NotFound} />
               </Switch>
             </div>
@@ -29,7 +30,6 @@ class App extends Component {
   }
 }
 
-const Address = () => <div>We are located at 555 Jackson St.</div>;
 const NotFound = () => <div>Page not FOUND 404..........</div>;
 
 export default App;

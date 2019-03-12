@@ -1,14 +1,18 @@
 .home-card-body {
     width: 100%;
-    margin: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    flex-flow: center;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .home-card {
-    margin: 15px;
+    margin: 20px;
+    flex: 1 1 250px;
+}
+
+.home-body {
+    padding: 20px;
+    margin-bottom: 64px;
 }

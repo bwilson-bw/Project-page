@@ -11,7 +11,8 @@ import cardImage from "../images/cardImage.png";
 
 const styles = {
   card: {
-    maxWidth: 345
+    minWidth: "250px",
+    width: "100%"
   },
   media: {
     height: 140
@@ -24,7 +25,7 @@ const styles = {
 function ProjectCard(props) {
   const { classes, title, description, id, routeId } = props;
   return (
-    <Link to={routeId} className={classes.linkStyle}>
+    <Link to={`/projects${routeId}`} className={classes.linkStyle}>
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia

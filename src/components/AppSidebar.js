@@ -4,17 +4,15 @@ import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import { Link } from "react-router-dom";
 import projectConfiguration from "../projects/projectConfiguration";
 
 const styles = theme => ({
   root: {
-    width: "100%",
-    maxWidth: 280,
+    width: "280px",
     backgroundColor: theme.palette.background.paper,
     position: "relative",
-    overflow: "auto",
+    overflow: "scroll",
     height: "100vh"
   },
   linkStyle: {
@@ -47,7 +45,11 @@ class AppSidebar extends React.Component {
             </ListItem>
           </Link>
           {projectConfiguration.map((project, key) => (
-            <Link to={project.routeId} className={classes.linkStyle}>
+            <Link
+              to={`/projects${project.routeId}`}
+              className={classes.linkStyle}
+              key={key}
+            >
               <ListItem
                 button
                 selected={this.state.selectedIndex === key + 1}
