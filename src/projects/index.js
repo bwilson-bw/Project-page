@@ -1,9 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import projectConfiguration from './projectConfiguration';
 
+const NotFound = () => <div className="home-body">Page not FOUND 404..........</div>;
+
 function Projects({ match }) {
-    return projectConfiguration.map((project, key) => (
+    const routes = projectConfiguration.map((project, key) => (
         <Route
             exact
             path={`${match.url}${project.routeId}`}
@@ -11,6 +13,12 @@ function Projects({ match }) {
             key={key}
         />
     ));
+    return (
+        <Switch>
+            {routes}
+            <Route path={`${match.url}*`} component={NotFound} />
+        </Switch>
+    );
 }
 
 export default Projects;
