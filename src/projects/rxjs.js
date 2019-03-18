@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { fromEvent } from 'rxjs';
-import { takeUntil, mergeMap, filter } from 'rxjs/operators';
+import { takeUntil, mergeMap, takeWhile } from 'rxjs/operators';
 
 class Rxjs extends React.Component {
     constructor(props) {
@@ -26,22 +26,19 @@ class Rxjs extends React.Component {
 
         const getScrollTop = () => scrollableContainer.scrollTop;
 
-        const mouseLeavesContainer = filter(e => {
-            return (
-                e.clientX > containerBounds.left + 50 &&
-                e.clientX < containerBounds.right - 50 &&
-                e.clientY > containerBounds.top - getScrollTop() + 50 &&
-                e.clientY < containerBounds.bottom - getScrollTop() - 50
-            );
-        });
+        const mouseLeavesContainer = mouseMoves.pipe(
+            takeWhile(e => {
+                return (
+                    e.clientX > containerBounds.left + 50 &&
+                    e.clientX < containerBounds.right - 50 &&
+                    e.clientY > containerBounds.top - getScrollTop() + 50 &&
+                    e.clientY < containerBounds.bottom - getScrollTop() - 50
+                );
+            })
+        );
 
         const dragBox1 = box1MouseDowns.pipe(
-            mergeMap(e =>
-                mouseMoves.pipe(
-                    mouseLeavesContainer,
-                    takeUntil(mouseUps)
-                )
-            )
+            mergeMap(e => mouseLeavesContainer.pipe(takeUntil(mouseUps)))
         );
 
         const subscription = dragBox1.subscribe(e => {
