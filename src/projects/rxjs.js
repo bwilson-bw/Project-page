@@ -45,7 +45,7 @@ class Rxjs extends React.Component {
         const mouseLeavesContainer = grabCoordinates.pipe(
             filter(e => {
                 const bounds = box1.current.getBoundingClientRect();
-                console.log(e);
+
                 return (
                     bounds.left + e.x >= containerBounds.left &&
                     bounds.right + e.x <= containerBounds.right &&
