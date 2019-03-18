@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { fromEvent } from 'rxjs';
-import { takeUntil, mergeMap, takeWhile } from 'rxjs/operators';
+import { takeUntil, mergeMap, filter, pairwise, map } from 'rxjs/operators';
 
 class Rxjs extends React.Component {
     constructor(props) {
@@ -26,28 +26,47 @@ class Rxjs extends React.Component {
 
         const getScrollTop = () => scrollableContainer.scrollTop;
 
-        const mouseLeavesContainer = mouseMoves.pipe(
-            takeWhile(e => {
+        const mouseMovesUntil = mouseMoves.pipe(takeUntil(mouseUps));
+
+        const grabCoordinates = box1MouseDowns.pipe(
+            mergeMap(e =>
+                mouseMovesUntil.pipe(pairwise()).pipe(
+                    map(pair => {
+                        const x0 = pair[0].clientX;
+                        const y0 = pair[0].clientY;
+                        const x1 = pair[1].clientX;
+                        const y1 = pair[1].clientY;
+                        return { x: x1 - x0, y: y1 - y0 };
+                    })
+                )
+            )
+        );
+
+        const mouseLeavesContainer = grabCoordinates.pipe(
+            filter(e => {
+                const bounds = box1.current.getBoundingClientRect();
+                console.log(e);
                 return (
-                    e.clientX > containerBounds.left + 50 &&
-                    e.clientX < containerBounds.right - 50 &&
-                    e.clientY > containerBounds.top - getScrollTop() + 50 &&
-                    e.clientY < containerBounds.bottom - getScrollTop() - 50
+                    bounds.left + e.x >= containerBounds.left &&
+                    bounds.right + e.x <= containerBounds.right &&
+                    bounds.top + e.y >= containerBounds.top - getScrollTop() &&
+                    bounds.bottom + e.y <= containerBounds.bottom - getScrollTop()
                 );
             })
         );
 
-        const dragBox1 = box1MouseDowns.pipe(
-            mergeMap(e => mouseLeavesContainer.pipe(takeUntil(mouseUps)))
-        );
+        let L = 0;
+        let T = 0;
 
-        const subscription = dragBox1.subscribe(e => {
-            box1.current.style.left = e.clientX - container.current.offsetLeft - 280 - 50 + 'px';
-            box1.current.style.top =
-                e.clientY - container.current.offsetTop - 64 - 50 + getScrollTop() + 'px';
+        const sub = mouseLeavesContainer.subscribe(e => {
+            L += e.x;
+            T += e.y;
+
+            box1.current.style.left = L + 'px';
+            box1.current.style.top = T + 'px';
         });
 
-        this.subscriptions.push(subscription);
+        this.subscriptions.push(sub);
     }
 
     componentWillUnmount() {
@@ -69,10 +88,6 @@ class Rxjs extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <Typography variant="h6">
-                        Things to do: Improve collision detection, by moving to vector based
-                        movement.
-                    </Typography>
                 </Paper>
             </div>
         );
