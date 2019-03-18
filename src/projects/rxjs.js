@@ -69,6 +69,10 @@ class Rxjs extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <Typography variant="h6">
+                        Things to do: Improve collision detection, by moving to vector based
+                        movement.
+                    </Typography>
                 </Paper>
             </div>
         );
