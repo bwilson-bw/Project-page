@@ -18,7 +18,7 @@ class Rxjs extends React.Component {
         const box1MouseDowns = fromEvent(box1.current, 'mousedown');
 
         const mouseMoves = fromEvent(container.current, 'mousemove');
-        const mouseUps = fromEvent(container.current, 'mouseup');
+        const mouseUps = fromEvent(document, 'mouseup');
 
         const containerBounds = container.current.getBoundingClientRect();
 
