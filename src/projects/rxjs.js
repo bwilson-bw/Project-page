@@ -17,7 +17,7 @@ class Rxjs extends React.Component {
 
         const box1MouseDowns = fromEvent(box1.current, 'mousedown');
 
-        const mouseMoves = fromEvent(container.current, 'mousemove');
+        const mouseMoves = fromEvent(document, 'mousemove');
         const mouseUps = fromEvent(document, 'mouseup');
 
         const containerBounds = container.current.getBoundingClientRect();
@@ -61,30 +61,34 @@ class Rxjs extends React.Component {
         const mouseHitsContainer = grabCoordinates.pipe(
             map(e => {
                 const bounds = box1.current.getBoundingClientRect();
-                let returnEarly = false;
+                let returnEarlyTop = false;
+                let returnEarlyLeft = false;
 
                 if (bounds.left + e.x < containerBounds.left) {
                     L = 0;
                     console.log('left');
-                    returnEarly = true;
+                    returnEarlyLeft = true;
                 }
                 if (bounds.right + e.x > containerBounds.right) {
                     L = containerBounds.width - 100;
                     console.log('right');
-                    returnEarly = true;
+                    returnEarlyLeft = true;
                 }
                 if (bounds.top + e.y < containerBounds.top - getScrollTop()) {
                     T = 0;
                     console.log('top');
-                    returnEarly = true;
+                    returnEarlyTop = true;
                 }
                 if (bounds.bottom + e.y > containerBounds.bottom - getScrollTop()) {
                     T = containerBounds.height - 100;
                     console.log('bottom');
-                    returnEarly = true;
+                    returnEarlyTop = true;
                 }
-                if (returnEarly) {
-                    return { x: 0, y: 0 };
+                if (returnEarlyLeft) {
+                    return { x: 0, y: e.y };
+                }
+                if (returnEarlyTop) {
+                    return { x: e.x, y: 0 };
                 }
                 return e;
             })
