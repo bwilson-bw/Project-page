@@ -66,23 +66,23 @@ class Rxjs extends React.Component {
 
                 if (bounds.left + e.x < containerBounds.left) {
                     L = 0;
-                    console.log('left');
                     returnEarlyLeft = true;
                 }
                 if (bounds.right + e.x > containerBounds.right) {
                     L = containerBounds.width - 100;
-                    console.log('right');
                     returnEarlyLeft = true;
                 }
                 if (bounds.top + e.y < containerBounds.top - getScrollTop()) {
                     T = 0;
-                    console.log('top');
                     returnEarlyTop = true;
                 }
                 if (bounds.bottom + e.y > containerBounds.bottom - getScrollTop()) {
                     T = containerBounds.height - 100;
-                    console.log('bottom');
                     returnEarlyTop = true;
+                }
+
+                if (returnEarlyLeft && returnEarlyTop) {
+                    return { x: 0, y: 0 };
                 }
                 if (returnEarlyLeft) {
                     return { x: 0, y: e.y };
