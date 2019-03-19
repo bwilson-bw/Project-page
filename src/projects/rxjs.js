@@ -41,24 +41,56 @@ class Rxjs extends React.Component {
                 )
             )
         );
-
-        const mouseLeavesContainer = grabCoordinates.pipe(
-            filter(e => {
-                const bounds = box1.current.getBoundingClientRect();
-
-                return (
-                    bounds.left + e.x >= containerBounds.left &&
-                    bounds.right + e.x <= containerBounds.right &&
-                    bounds.top + e.y >= containerBounds.top - getScrollTop() &&
-                    bounds.bottom + e.y <= containerBounds.bottom - getScrollTop()
-                );
-            })
-        );
+        // A filter implementation
+        // const mouseLeavesContainer = grabCoordinates.pipe(
+        //     filter(e => {
+        //         const bounds = box1.current.getBoundingClientRect();
+        //
+        //         return (
+        //             bounds.left + e.x >= containerBounds.left &&
+        //             bounds.right + e.x <= containerBounds.right &&
+        //             bounds.top + e.y >= containerBounds.top - getScrollTop() &&
+        //             bounds.bottom + e.y <= containerBounds.bottom - getScrollTop()
+        //         );
+        //     })
+        // );
 
         let L = 0;
         let T = 0;
 
-        const sub = mouseLeavesContainer.subscribe(e => {
+        const mouseHitsContainer = grabCoordinates.pipe(
+            map(e => {
+                const bounds = box1.current.getBoundingClientRect();
+                let returnEarly = false;
+
+                if (bounds.left + e.x < containerBounds.left) {
+                    L = 0;
+                    console.log('left');
+                    returnEarly = true;
+                }
+                if (bounds.right + e.x > containerBounds.right) {
+                    L = containerBounds.width - 100;
+                    console.log('right');
+                    returnEarly = true;
+                }
+                if (bounds.top + e.y < containerBounds.top - getScrollTop()) {
+                    T = 0;
+                    console.log('top');
+                    returnEarly = true;
+                }
+                if (bounds.bottom + e.y > containerBounds.bottom - getScrollTop()) {
+                    T = containerBounds.height - 100;
+                    console.log('bottom');
+                    returnEarly = true;
+                }
+                if (returnEarly) {
+                    return { x: 0, y: 0 };
+                }
+                return e;
+            })
+        );
+
+        const sub = mouseHitsContainer.subscribe(e => {
             L += e.x;
             T += e.y;
 
